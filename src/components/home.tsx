@@ -1,10 +1,11 @@
-import { Clock, LocateIcon, MapPin, Pill, ScanHeart, ShieldCheck, TicketPlus } from "lucide-react"
+import { Check, Clock, MapPin, Pill, ScanHeart, ShieldCheck, TicketPlus } from "lucide-react"
 import Navigation from "./Navigation"
 import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
 import TextPlugin from "gsap/TextPlugin"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
+import { useState } from "react"
 
 
 
@@ -12,6 +13,9 @@ import { useGSAP } from "@gsap/react"
 const Home = () => {
 
   gsap.registerPlugin(SplitText, TextPlugin, ScrollTrigger);
+
+  const [appointment, setAppointment] = useState<boolean>(false)
+
   useGSAP ( ()=> {
     function slidePanels () {
       let vitamin = document.querySelector(".vitamin")
@@ -46,13 +50,14 @@ const Home = () => {
     <div className='bg-background'>
 
         {/* hero section */}
-        <section className="bg-background px-6 pt-24 min-h-screen h-auto
+        <section id="hero"
+        className="bg-background px-6 pt-24 min-h-screen h-auto
         md:pt-32 ">
             {/* navigation */}
             <Navigation/>
             {/* the textual and image content */}
             <div className="grid grid-cols-1 items-center justify-center
-            md:grid-cols-2 md:items-start bg-green-300 rounded-[1rem] ">
+            md:grid-cols-2 md:items-start bg-primary rounded-[1rem] ">
 
               {/* live well div */}
             <div className="p-6 h-screen">
@@ -65,11 +70,11 @@ const Home = () => {
               </div>
               <h1 className="py-3 md:py-0">
                 <span className="font-titan inline-block tracking-wide
-                text-[40px] text-primary md:text-[4rem] ">Feel better,</span> <br />
+                text-[40px] text-background md:text-[4rem] ">Feel better,</span> <br />
                 <span className="inline-block italic font-puff text-[35px]
-                text-green-800 py-1 md:text-[3.5rem] ">&nbsp;live well.</span>
+                text-surface py-1 md:text-[3.5rem] ">&nbsp;live well.</span>
               </h1>
-              <p className="font-winky text-green-900/60 py-6 text-[18px]
+              <p className="font-winky text-surface py-6 text-[18px]
               leading-[1.8rem] md:py-4 md:text-[1.8rem] md:leading-[2.3rem] ">
                 Trusted medicines, expert pharmacists, and everyday wellbeing
                 essentials - delivered with genuine care.
@@ -77,25 +82,28 @@ const Home = () => {
               {/* button */}
               <div className="flex items-center justify-start flex-col py-4
               md:flex-row gap-4">
-                <button className="bg-primary text-white px-4 py-2 rounded-[2rem]
-                font-winky text-center w-full ">Shop health essentials</button>
-                <button className="bg-background text-primary px-4 py-2 rounded-[2rem]
-                font-winky text-center border border-2  border-green-900/50
-                w-full ">Transfer a prescription</button>
+                <a href="#services"
+                className="bg-primary text-white px-4 py-2 rounded-[2rem]
+                font-winky text-center w-full border border-2 border-background
+                 ">Shop health essentials</a>
+                <a href="#health"
+                className="bg-background text-primary px-4 py-2 rounded-[2rem]
+                font-winky text-center border border-2  border-surface shadow-surface
+                w-full shadow-md ">our health support</a>
               </div>
               {/* license */}
               <div className="flex  flex-col items-start justify-start gap-y-0
               md:flex-row gap-x-6 md:mt-12 ">
                 {/* licensed pharmacists */}
                 <div className="flex items-center justify-start gap-x-3 ">
-                  <TicketPlus/>
-                  <p className="font-winky text-green-900/60 py-4 text-[18px]
+                  <Check className="text-surface "/>
+                  <p className="font-winky text-surface py-4 text-[18px]
                   leading-[1.8rem] capitalize ">licensed pharmacists</p>
                 </div>
                 {/* secure & confidential */}
                 <div className="flex items-center justify-start gap-x-3 ">
-                   <TicketPlus/>
-                  <p className="font-winky text-green-900/60 py-4 text-[18px]
+                   <Check className="text-surface"/>
+                  <p className="font-winky text-surface py-4 text-[18px]
                   leading-[1.8rem] capitalize ">secure & confidential</p>
                 </div>
               </div>
@@ -104,11 +112,11 @@ const Home = () => {
             <div className="relative h-screen bg-[url('/shopping2.webp')]
             bg-center bg-cover rounded-[1rem] z-0 ">
               {/* gradient over lay in smaller screens */}
-              <div className="absolute inset-0 bg-gradient-to-b from-green-300
+              <div className="absolute inset-0 bg-gradient-to-b from-primary
               to-transparent md:from-transparent "></div>
               {/* gradient overlay in medium to larger screens */}
               <div className="hidden md:block absolute inset-0 bg-gradient-to-r
-              from-green-300 to-transparent "></div>
+              from-primary to-transparent "></div>
             </div>
 
             </div>
@@ -143,7 +151,8 @@ const Home = () => {
         </section>
 
         {/* care without pain section */}
-        <section className="p-6 h-[30rem] text-center py-[4rem]
+        <section id="care"
+        className="p-6 h-[30rem] text-center py-[4rem]
         md:py-[5rem] ">
           {/* title */}
           <h2 className="font-puff text-primary text-[3rem]
@@ -156,7 +165,8 @@ const Home = () => {
         </section>
 
         {/* our services section */}
-        <section className="min-h-screen h-auto p-6 flex flex-col relative
+        <section id="services"
+        className="min-h-screen h-auto p-6 flex flex-col relative
         overflow-hidden services ">
           <h1 className="font-puffy text-primary font-black tracking-wide
           capitalize text-[2rem] ">huduma zetu</h1>
@@ -170,101 +180,107 @@ const Home = () => {
           />
 
           {/* vitamin supplement div */}
-          <section className="h-screen p-6 text-center flex flex-col items-center
+          <section id="vitamin"
+          className="h-screen p-6 text-center flex flex-col items-center
           justify-center gap-y-2 absolute inset-0 bg-background vitamin ">
             {/* image */}
             <img src="/vitamin.svg" alt="orange juice vitamin supplement"
             className=" size-16 rounded-full my-3 shadow shadow-md 
-            shadow-primary "
+            shadow-primary md:size-24 "
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            ">virutubisho vya vitamini</h2>
-            <p className="font-winky font-thin text-[16px] pb-3 ">
+            md:text-[2rem] ">virutubisho vya vitamini</h2>
+            <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
                Quaerat quasi ab veniam.
             </p>
-            <a href="#"
+            <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
           </section>
           {/* personal care div */}
-          <section className="h-screen p-6 text-center flex flex-col items-center
-          justify-center gap-y-2 absolute inset-0 bg-background personal ">
+          <section id="personal"
+          className="h-screen p-6 text-center flex flex-col items-center
+          justify-center gap-y-2 absolute inset-0 bg-primary personal ">
             {/* image */}
             <img src="/care.svg" alt="orange juice vitamin supplement"
-            className=" size-16 rounded-full my-3 shadow shadow-md 
-            shadow-primary "
+            className=" size-16 rounded-full my-3 shadow shadow-xl
+            shadow-surface md:size-24 bg-background "
             />
             {/* title */}
-            <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            ">personal care</h2>
-            <p className="font-winky font-thin text-[16px] pb-3 ">
+            <h2 className="font-puff text-white py-2 capitalize tracking-wide
+            md:text-[3rem] ">personal care</h2>
+            <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem]
+            text-surface ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
                Quaerat quasi ab veniam.
             </p>
-            <a href="#"
+            <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >fika ofisini kwetu</a>
           </section>
           {/*medicine prescriptions div */}
-          <section className="h-screen p-6 text-center flex flex-col items-center
+          <section id="medicine"
+          className="h-screen p-6 text-center flex flex-col items-center
           justify-center gap-y-2 absolute inset-0 bg-background medicine ">
-            {/* image */}
+             {/* image */}
             <img src="/medicines.svg" alt="orange juice vitamin supplement"
             className=" size-16 rounded-full my-3 shadow shadow-md 
-            shadow-primary "
+            shadow-primary md:size-24 "
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            ">medicine prescription</h2>
-            <p className="font-winky font-thin text-[16px] pb-3 ">
+            md:text-[3rem] ">Medicine & Prescriptions</h2>
+            <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
                Quaerat quasi ab veniam.
             </p>
-            <a href="#"
+            <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
           </section>
           {/*baby & children care div */}
-          <section className="h-screen p-6 text-center flex flex-col items-center
+          <section id="baby"
+          className="h-screen p-6 text-center flex flex-col items-center
           justify-center gap-y-2 absolute inset-0 bg-background baby ">
             {/* image */}
             <img src="/baby.svg" alt="orange juice vitamin supplement"
             className=" size-16 rounded-full my-3 shadow shadow-md 
-            shadow-primary "
+            shadow-primary md:size-24 "
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            ">child infant care</h2>
-            <p className="font-winky font-thin text-[16px] pb-3 ">
+            md:text-[3rem] ">child infant care</h2>
+            <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
                Quaerat quasi ab veniam.
             </p>
-            <a href="#"
+            <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
           </section>
           {/* advice & consultation div */}
-          <section className="h-screen p-6 text-center flex flex-col items-center
+          <section id="advice"
+          className="h-screen p-6 text-center flex flex-col items-center
           justify-center gap-y-2 absolute inset-0 bg-background advice ">
             {/* image */}
             <img src="/advice.svg" alt="orange juice vitamin supplement"
             className=" size-16 rounded-full my-3 shadow shadow-md 
-            shadow-primary "
+            shadow-primary md:size-24 "
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            ">advice & consultation</h2>
-            <p className="font-winky font-thin text-[16px] pb-3 ">
+            md:text-[3rem] ">advice & consultation</h2>
+            <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
                Quaerat quasi ab veniam.
             </p>
-            <a href="#"
+            <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
@@ -273,7 +289,8 @@ const Home = () => {
         </section>
 
         {/* more than medicine section */}
-        <section className="h-auto p-6 bg-primary text-white
+        <section id="health"
+        className="min-h-screen h-auto p-6 bg-primary text-white relative
         grid grid-cols-1 items-center justify-center gap-6 md:grid-cols-2
         md:items-start ">
           {/* health support div */}
@@ -286,10 +303,10 @@ const Home = () => {
               From routine vaccinations to medication reviews, our
               pharmacists are here to make healthcare feel simpler.
             </p>
-            <a href="#"
+            <button onClick={ ()=> setAppointment(!appointment)}
             className="bg-yellow-500/70 px-2 py-1 rounded-[.2rem] font-puff
-            tracking-widest font-thin md:text-[24px] "
-            >Book an appointment</a>
+            tracking-widest font-thin md:text-[24px] cursor-pointer "
+            >Book an appointment</button>
           </div>
           {/* vaccinations div */}
           <div className="bg-green-400/10 rounded-[1rem] p-3 grid
@@ -333,10 +350,82 @@ const Home = () => {
               </p>
             </div>
           </div>
+
+          {/* book an appoinment modal */}
+        {appointment && (
+          <div className="h-auto bg-surface/10 absolute inset-0
+          backdrop-blur-sm px-3 py-[16rem] md:px-6 md:py-3 md:backdrop-blur-3xl  ">
+            <div className="border border-2 border-surface rounded-[.9rem] ">
+              {/* cancel button */}
+              <div className="flex items-center justify-end px-6 ">
+                <button onClick={ ()=> setAppointment(!appointment)}
+              className="bg-background text-primary px-2 py-1 rounded-[.2rem]
+              w-[32%] mt-8 shadow shadow:md shadow-surface cursor-pointer
+              font-puff text-[16px] mb-3 md:w-[10%] " >cancel</button>
+              </div>
+            {/* appointment form */}
+            <div>
+              <form action="#">
+                {/* name */}
+                <div className="name py-2 px-6 ">
+                  <p className="font-winky capitalize text-[18px] py-2 ">your name:</p>
+                  <input type="text" placeholder="Frank njolowelo"
+                  className=" w-full outline-none border-b border-b-2 px-2 py-1
+                  border-yellow-500 rounded-[.2rem] "
+                  />
+                </div>
+                {/* email */}
+                <div className="email py-2 px-6 ">
+                  <p className="font-winky capitalize text-[18px] py-2 ">email address:</p>
+                  <input type="email" placeholder="njolowelo@gmail.com"
+                  className=" w-full outline-none border-b border-b-2 px-2 py-1
+                  border-yellow-500 rounded-[.2rem] "
+                  />
+                </div>
+                {/* phone number */}
+                <div className="email py-2 px-6 ">
+                  <p className="font-winky capitalize text-[18px] py-2 ">phone number:</p>
+                  <input type="number" placeholder="+255 766 355 608"
+                  className=" w-full outline-none border-b border-b-2 px-2 py-1
+                  border-yellow-500 rounded-[.2rem] "
+                  />
+                </div>
+                {/* subject matter */}
+                <div className="subject py-2 px-6 ">
+                  <p className="font-winky capitalize text-[18px] py-2 ">subject matter:</p>
+                  <textarea name="subject" id="subject" cols={8} rows={3}
+                  placeholder="lorem ipsum dolor sit amet..."
+                  className="border-b border-b-2 border-yellow-500 w-full
+                  rounded-[.2rem] "
+                  ></textarea>
+                </div>
+                {/* date */}
+                <div className="date py-2 px-6 ">
+                  <p className="font-winky capitalize text-[18px] py-2 ">pick your date:</p>
+                  <input type="date"
+                  className=" w-full outline-none border-b border-b-2 px-2 py-1
+                  border-yellow-500 rounded-[.2rem] "
+                  />
+                </div>
+                {/* save or submit button  */}
+                <button type="submit" onClick={ ()=> setAppointment(!appointment)}
+                className="mx-6 my-2 font-puff bg-background text-primary
+                px-2 py-1 rounded-[.2rem] w-[32%] md:w-[10%] mb-3
+                cursor-pointer "
+                >submit</button>
+
+              </form>
+            </div>
+            </div>
+
+          </div>
+        )}
+
         </section>
 
         {/* contacts section */}
-        <section className="min-h-screen h-auto p-6 bg-gradient-to-b
+        <section id="contact"
+        className="min-h-screen h-auto p-6 bg-gradient-to-b
         from-primary via-transparent to-transparent border-b border-surface ">
           <div className="h-auto bg-background rounded-[1rem] grid grid-cols-1
           items-center justify-center md:items-start gap-6 md:grid-cols-2 ">
@@ -345,17 +434,18 @@ const Home = () => {
               <MapPin fill="background" className="text-primary bg-surface rounded-full
               size-10 p-1"
               />
-              <h1 className="font-puff py-3 text-[26px] md:text-[3rem] ">
+              <h1 className="font-puff py-3 text-[26px] md:text-[3rem]
+              text-primary ">
                 Your neighborhood pharmacy, wherever you are
               </h1>
               <p className="font-winky font-thin tracking-wide pt-3 text-[18px]
-              pb-6 md:text-[1.8rem] ">
+              pb-6 md:text-[1.8rem] text-black/70 ">
                 Stop by for personal advice, quick prescriptions,
                 and a familiar face. We have 24 locally owned
                 locations ready to help.
               </p>
               <a href="#"
-              className="bg-primary text-surface font-titan tracking-widest px-2
+              className="bg-primary text-white font-titan tracking-widest px-2
               py-1 rounded-[.2rem] font-thin my-3 inline-block md:text-[1.3rem] "
               >let's talk</a>
             </div>
@@ -371,7 +461,7 @@ const Home = () => {
         </section>
 
         {/* footer section */}
-        <section className="h-screen p-6 ">
+        <section id="footer" className="h-screen p-6 ">
           <div className="grid grid-cols-1 items-center justify-center
           md:grid-cols-3 gap-y-8 gap-x-12 py-12 ">
             {/* logo */}
@@ -391,11 +481,11 @@ const Home = () => {
               <h1 className="font-puff text-primary py-2 ">pharmacy</h1>
               <nav className="flex flex-col items-start justify-start
               gap-y-1">
-                <a href="#" className="text-black/70 font-winky tracking-wide
+                <a href="#hero" className="text-black/70 font-winky tracking-wide
                 ">Home</a>
-                <a href="#" className="text-black/70 font-winky tracking-wide
+                <a href="#care" className="text-black/70 font-winky tracking-wide
                 ">Services</a>
-                <a href="#" className="text-black/70 font-winky tracking-wide
+                <a href="#contact" className="text-black/70 font-winky tracking-wide
                 ">Send us a message</a>
               </nav>
             </div>

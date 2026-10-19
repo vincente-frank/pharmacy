@@ -1,4 +1,4 @@
-import { MenuIcon, XCircleIcon, XIcon } from 'lucide-react'
+import { MenuIcon, XIcon } from 'lucide-react'
 import React, { useState } from 'react'
 
 const Navigation = () => {
@@ -41,20 +41,24 @@ const Navigation = () => {
         {/* navigation drawer items */}
         { menu && (
             <div className='h-auto w-full bg-background fixed left-0
-            right-0 top-[4.3rem]'>
+            right-0 top-[4.3rem] z-10 '>
                 <nav className='p-6 flex items-start flex-col gap-y-3'>
-                    <a href="#"
-                    className='capitalize font-winky tracking-[.1rem] '
-                    >shop</a>
-                    <a href="#"
-                    className='capitalize font-winky tracking-[.1rem] '
-                    >prescriptions</a>
-                    <a href="#"
-                    className='capitalize font-winky tracking-[.1rem] '
+                    <a href="#hero" onClick={ ()=> setMenu(!menu)}
+                    className='capitalize font-winky tracking-[.1rem] w-full '
+                    >home</a>
+                    <a href="#services" onClick={ ()=> setMenu(!menu)}
+                    className='capitalize font-winky tracking-[.1rem] w-full '
                     >services</a>
-                    <a href="#"
-                    className='capitalize font-winky tracking-[.1rem] '
-                    >contact us</a>
+                    <a href="#contact" onClick={ ()=> setMenu(!menu)}
+                    className='capitalize font-winky tracking-[.1rem] w-full '
+                    >send us a message</a>
+                    <a href="#footer" onClick={ ()=> setMenu(!menu)}
+                    className='capitalize font-winky tracking-[.1rem] w-full '
+                    >our social media</a>
+                    <a href="#health" onClick={ ()=> setMenu(!menu)}
+                    className='capitalize font-puff tracking-[.1rem] bg-primary
+                    text-background px-2 py-1 rounded-[.2rem] '
+                    >book an appointment</a>
                 </nav>
             </div>
         )}
@@ -64,7 +68,7 @@ const Navigation = () => {
         p-3 bg-background border-b border-surface fixed top-0 left-0
         right-0 z-10 '>
             {/* logo */}
-            <div>
+            <div className='pl-4'>
                 <h1 className='font-puff tracking-wide text-[16px]'>
                     <span className='text-primary text-[24px] '>k</span>
                     <span>ing</span>
@@ -75,23 +79,30 @@ const Navigation = () => {
             {/* navigation */}
             <div>
                 <nav className='p-6 flex items-center justify-center gap-x-6'>
-                    <a href="#"
+                    <a href="#hero"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
-                    >shop</a>
-                    <a href="#"
-                    className='capitalize font-winky tracking-[.1rem]
-                    text-[20px] '
-                    >prescriptions</a>
-                    <a href="#"
+                    >home</a>
+                    <a href="#services"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
                     >services</a>
-                    <a href="#"
+                    <a href="#contact"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
                     >contact us</a>
+                    <a href="#footer"
+                    className='capitalize font-winky tracking-[.1rem]
+                    text-[20px] '
+                    >our socials</a>
                 </nav>
+            </div>
+            {/* appointment */}
+            <div className='pr-4'>
+                <a href="#health"
+                className='capitalize font-puff tracking-[.1rem] bg-primary
+                text-[20px] px-2 py-1 text-background rounded-[.2rem] '
+                >book an appointment</a>
             </div>
         </section>
 
