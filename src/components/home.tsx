@@ -17,7 +17,9 @@ const Home = () => {
   const [appointment, setAppointment] = useState<boolean>(false)
 
   useGSAP ( ()=> {
-    function slidePanels () {
+    const master = gsap.timeline()
+
+    function slidePanels ():gsap.core.Timeline {
       let vitamin = document.querySelector(".vitamin")
       let personal = document.querySelector(".personal")
       let medicine = document.querySelector(".medicine")
@@ -40,19 +42,50 @@ const Home = () => {
         anticipatePin: 1,
         animation: tl
       })
+      return tl;
     }
-    slidePanels()
+    function heroAnimation ():gsap.core.Timeline {
+      let hero = document.querySelector(".hero")
+      let heroCare = document.querySelector(".hero-care")
+      let heroHead = document.querySelector("hero-head")
+      let heroFeel = document.querySelector(".hero-feel")
+      let heroLive = document.querySelector(".hero-live")
+      let heroDescription = document.querySelector(".hero-description")
+      let heroShop = document.querySelector(".hero-shop")
+      let heroHealth = document.querySelector(".hero-health")
+      let heroLicensed = document.querySelector(".hero-licensed")
+      let heroSecured = document.querySelector(".hero-secured")
+      let heroImage = document.querySelector(".hero-image")
+      let duration = 2
+      const heroTimeline = gsap.timeline()
+      .from(hero, {autoAlpha:1})
+      .from(heroCare, {opacity:0, scale:0.4, x: 80, duration:duration },"<")
+      .from(heroImage, {opacity:0, y:80, duration:1},"<")
+      .from(heroFeel, {opacity:0, y:80, duration:1},"-=1.5")
+      .from(heroLive, {opacity:0, y:80, duration:1},"-=0.8")
+      .from(heroDescription, {opacity:0, y:80, duration:1},"-=0.8")
+      .from(heroShop, {opacity:0, scale:0.4, x: 80, duration:duration },"<")
+      .from(heroHealth, {opacity:0, scale:0.4, x: -80, duration:duration },"-=1")
+      return heroTimeline;
+    }
+
+    master
+    .add(heroAnimation())
+    .add(slidePanels())
+
+    // ScrollTrigger.create()
+
   }, []);
 
 
   return (
 
-    <div className='bg-background'>
+    <div className='bg-background container '>
 
         {/* hero section */}
         <section id="hero"
         className="bg-background px-6 pt-24 min-h-screen h-auto
-        md:pt-32 ">
+        md:pt-32 hero ">
             {/* navigation */}
             <Navigation/>
             {/* the textual and image content */}
@@ -61,20 +94,23 @@ const Home = () => {
 
               {/* live well div */}
             <div className="p-6 h-screen">
-              <div className="flex items-center justify-start gap-x-3
+              {/* hero care that feels personal */}
+              <div className="flex items-center justify-start gap-x-3 hero-care
               bg-background px-2 py-1 w-[70%] rounded-[2rem] shadow
               shadow-md shadow-surface md:my-6 mt-10 mb-6 md:w-[40%] ">
                 <div className="size-2 bg-green-800 rounded-full"></div>
                 <p className="uppercase font-winky tracking-wide text-[12px]
                 md:text-[16px] text-green-800 ">care that feels personal</p>
               </div>
-              <h1 className="py-3 md:py-0">
+              {/* hero head */}
+              <h1 className="py-3 md:py-0 hero-head">
                 <span className="font-titan inline-block tracking-wide
-                text-[40px] text-background md:text-[4rem] ">Feel better,</span> <br />
+                text-[40px] text-background md:text-[4rem] hero-feel ">Feel better,</span> <br />
                 <span className="inline-block italic font-puff text-[35px]
-                text-surface py-1 md:text-[3.5rem] ">&nbsp;live well.</span>
+                text-surface py-1 md:text-[3.5rem] hero-live ">&nbsp;live well.</span>
               </h1>
-              <p className="font-winky text-surface py-6 text-[18px]
+              {/* hero description */}
+              <p className="font-winky text-surface py-6 text-[18px] hero-description
               leading-[1.8rem] md:py-4 md:text-[1.8rem] md:leading-[2.3rem] ">
                 Trusted medicines, expert pharmacists, and everyday wellbeing
                 essentials - delivered with genuine care.
@@ -85,23 +121,25 @@ const Home = () => {
                 <a href="#services"
                 className="bg-primary text-white px-4 py-2 rounded-[2rem]
                 font-winky text-center w-full border border-2 border-background
-                 ">Shop health essentials</a>
+                hero-shop ">Shop health essentials</a>
                 <a href="#health"
                 className="bg-background text-primary px-4 py-2 rounded-[2rem]
                 font-winky text-center border border-2  border-surface shadow-surface
-                w-full shadow-md ">our health support</a>
+                w-full shadow-md hero-health ">our health support</a>
               </div>
               {/* license */}
               <div className="flex  flex-col items-start justify-start gap-y-0
               md:flex-row gap-x-6 md:mt-12 ">
                 {/* licensed pharmacists */}
-                <div className="flex items-center justify-start gap-x-3 ">
+                <div className="flex items-center justify-start gap-x-3
+                hero-licensed ">
                   <Check className="text-surface "/>
                   <p className="font-winky text-surface py-4 text-[18px]
                   leading-[1.8rem] capitalize ">licensed pharmacists</p>
                 </div>
                 {/* secure & confidential */}
-                <div className="flex items-center justify-start gap-x-3 ">
+                <div className="flex items-center justify-start gap-x-3
+                hero-secured ">
                    <Check className="text-surface"/>
                   <p className="font-winky text-surface py-4 text-[18px]
                   leading-[1.8rem] capitalize ">secure & confidential</p>
@@ -110,42 +148,42 @@ const Home = () => {
             </div>
             {/* image div */}
             <div className="relative h-screen bg-[url('/shopping2.webp')]
-            bg-center bg-cover rounded-[1rem] z-0 ">
+            bg-center bg-cover rounded-[1rem] z-0 hero-image ">
               {/* gradient over lay in smaller screens */}
               <div className="absolute inset-0 bg-gradient-to-b from-primary
-              to-transparent md:from-transparent "></div>
+              to-transparent md:from-transparent hero-image "></div>
               {/* gradient overlay in medium to larger screens */}
               <div className="hidden md:block absolute inset-0 bg-gradient-to-r
-              from-primary to-transparent "></div>
+              from-primary to-transparent hero-image "></div>
             </div>
 
             </div>
             {/* stat count div */}
             <div className="py-8 grid grid-cols-1 items-center justify-center
-            md:grid-cols-4 gap-y-3 gap-x-4 ">
+            md:grid-cols-4 gap-y-3 gap-x-4 stat ">
               {/* local pharmacies */}
               <div className="flex items-center justify-center flex-col
-              gap-y-1 border-b border-surface rounded-[1rem] p-2 ">
-                <h2 className="font-titan tracking-widest ">24</h2>
-                <p className="font-winky">local pharmacies</p>
+              gap-y-1 border-b border-surface rounded-[1rem] p-2 count ">
+                <h2 className="font-titan tracking-widest number ">24</h2>
+                <p className="font-winky text ">hour service</p>
               </div>
               {/* local pharmacies */}
               <div className="flex items-center justify-center flex-col
-              gap-y-1 border-b border-surface rounded-[1rem] p-2 ">
-                <h2 className="font-titan tracking-widest ">24</h2>
-                <p className="font-winky">local pharmacies</p>
+              gap-y-1 border-b border-surface rounded-[1rem] p-2 count ">
+                <h2 className="font-titan tracking-widest number ">24</h2>
+                <p className="font-winky text ">local pharmacies</p>
               </div>
               {/* local pharmacies */}
               <div className="flex items-center justify-center flex-col
-              gap-y-1 border-b border-surface rounded-[1rem] p-2 ">
-                <h2 className="font-titan tracking-widest ">24</h2>
-                <p className="font-winky">local pharmacies</p>
+              gap-y-1 border-b border-surface rounded-[1rem] p-2 count ">
+                <h2 className="font-titan tracking-widest number ">24</h2>
+                <p className="font-winky text ">local pharmacies</p>
               </div>
               {/* local pharmacies */}
               <div className="flex items-center justify-center flex-col
-              gap-y-1 border-b border-surface rounded-[1rem] p-2 ">
-                <h2 className="font-titan tracking-widest ">24</h2>
-                <p className="font-winky">local pharmacies</p>
+              gap-y-1 border-b border-surface rounded-[1rem] p-2 count ">
+                <h2 className="font-titan tracking-widest number ">24</h2>
+                <p className="font-winky text ">local pharmacies</p>
               </div>
             </div>
         </section>
