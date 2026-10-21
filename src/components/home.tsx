@@ -16,16 +16,15 @@ const Home = () => {
 
   const [appointment, setAppointment] = useState<boolean>(false)
 
-  useGSAP ( ()=> {
-    const master = gsap.timeline()
-
-    function slidePanels ():gsap.core.Timeline {
+  // sliding panel animation it scroll driven
+  function slidePanels ():gsap.core.Timeline {
       let vitamin = document.querySelector(".vitamin")
       let personal = document.querySelector(".personal")
       let medicine = document.querySelector(".medicine")
       let baby = document.querySelector(".baby")
       let advice = document.querySelector(".advice")
       let services = document.querySelector(".services")
+      
       const tl = gsap.timeline()
       .from(vitamin, {xPercent:250, duration:2})
       .from(personal, {xPercent:-250, duration:2})
@@ -44,10 +43,11 @@ const Home = () => {
       })
       return tl;
     }
-    function heroAnimation ():gsap.core.Timeline {
+    // hero animation function
+  function heroAnimation ():gsap.core.Timeline {
       let hero = document.querySelector(".hero")
       let heroCare = document.querySelector(".hero-care")
-      let heroHead = document.querySelector("hero-head")
+      let heroHead = document.querySelector(".hero-head")
       let heroFeel = document.querySelector(".hero-feel")
       let heroLive = document.querySelector(".hero-live")
       let heroDescription = document.querySelector(".hero-description")
@@ -68,12 +68,94 @@ const Home = () => {
       .from(heroHealth, {opacity:0, scale:0.4, x: -80, duration:duration },"-=1")
       return heroTimeline;
     }
+    // care reveal animation function
+    function careAnimation ():gsap.core.Timeline {
+      let care = document.querySelector(".care")
+      let heading = document.querySelector(".care h2")
+      let paragraph = document.querySelector(".care p")
+      let duration = 3
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: care,
+          start: "top 85%",
+          end: "bottom bottom",
+          scrub: true,
+        }
+      })
+      .from(heading, {opacity:0, scale:0.4, y:100, ease:"back",
+      duration:duration})
+      .from(paragraph, {opacity:0, duration: duration,
+      xPercent:100},"-=1.2")
 
-    master
-    .add(heroAnimation())
-    .add(slidePanels())
+      return tl;
+    }
+    // health support animation function
+    function healthAnimation ():gsap.core.Timeline {
+      let medicine = document.querySelector(".container-medicine")
+      let healthDiv = document.querySelector(".health")
+      let moreMedicine = document.querySelector(".more-medicine")
+      let heading = document.querySelector(".health-support")
+      let para = document.querySelector(".para")
+      let appointment = document.querySelector(".book")
+      let vaccinationsDiv = document.querySelector(".vaccinations")
+      let duration = 3
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: medicine,
+          start: "top 80%",
+          end: "+=400",
+          scrub: true,
+        }
+      })
+      .from(moreMedicine, {opacity:0, scale:0.4, y:100, ease:"back",
+      duration:duration})
+      .from(heading, {opacity:0, scale:0.4, y:100, ease:"back",
+      duration:duration})
+      .from(para, {opacity:0, y:100, ease:"back",
+      duration:duration})
+      .from(appointment, {opacity:0, scale:0.4, x:100, ease:"back",
+      duration:duration})
+      .from(vaccinationsDiv, {opacity:0, x:100, ease:"back",
+      duration:duration})
 
-    // ScrollTrigger.create()
+      return tl;
+    }
+    // services heaading animation function
+    function servicesHeading ():gsap.core.Timeline {
+      let services = document.querySelector(".services-head")
+      let serviceTitle = document.querySelector(".services-title")
+      let serviceDescription = document.querySelector(".services-description")
+      let serviceImage = document.querySelector(".services-image")
+      let splitTitle =  SplitText.create(serviceTitle, {type:"chars"})
+      let duration = 2
+      const tl = gsap.timeline()
+      .from(splitTitle.chars, {opacity:0, ease:"back", duration:duration,
+        stagger:0.05, y:gsap.utils.wrap([100, -100])
+      })
+      .from(serviceDescription, {opacity:0, y:80, ease:"back", duration:duration,
+        stagger:0.05,},"<")
+      .from(serviceImage, {opacity:0, y:80, ease:"back", duration:duration,
+       stagger:0.05,},"<")
+
+      ScrollTrigger.create({
+        trigger: services,
+        start: "top 80%",
+        end: "bottom 10%",
+        scrub: true,
+        markers: true,
+        animation: tl
+      })
+      return tl;
+
+    }
+
+  useGSAP ( ()=> {
+    
+    heroAnimation()
+    careAnimation()
+    servicesHeading()
+    slidePanels()
+    healthAnimation()
 
   }, []);
 
@@ -191,7 +273,7 @@ const Home = () => {
         {/* care without pain section */}
         <section id="care"
         className="p-6 h-[30rem] text-center py-[4rem]
-        md:py-[5rem] ">
+        md:py-[5rem] care ">
           {/* title */}
           <h2 className="font-puff text-primary text-[3rem]
           tracking-wide md:text-[6rem] ">care without pain</h2>
@@ -205,16 +287,17 @@ const Home = () => {
         {/* our services section */}
         <section id="services"
         className="min-h-screen h-auto p-6 flex flex-col relative
-        overflow-hidden services ">
+        overflow-hidden services services-head ">
           <h1 className="font-puffy text-primary font-black tracking-wide
-          capitalize text-[2rem] ">huduma zetu</h1>
-          <p className="pt-3 font-winky font-thin text-[24px] pb-6 ">
+          lowercase text-[2rem] services-title ">huduma zetu</h1>
+          <p className="pt-3 font-winky font-thin text-[24px] pb-6
+          services-description ">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Deleniti veritatis corrupti inventore?
           </p>
           <img src="/welcome.webp" alt=""
           className="rounded-[1rem] cursor-pointer aspect-square
-          object-cover h-[20rem] md:object-top md:h-[30rem] "
+          object-cover h-[20rem] md:object-top md:h-[30rem] services-image "
           />
 
           {/* vitamin supplement div */}
@@ -330,32 +413,33 @@ const Home = () => {
         <section id="health"
         className="min-h-screen h-auto p-6 bg-primary text-white relative
         grid grid-cols-1 items-center justify-center gap-6 md:grid-cols-2
-        md:items-start ">
+        md:items-start container-medicine ">
           {/* health support div */}
-          <div className="md:py-[4rem] ">
+          <div className="md:py-[4rem] health ">
             <p className="uppercase font-winky font-thin tracking-widest
-            text-surface text-[14px] ">more than medicine</p>
+            text-surface text-[14px] more-medicine ">more than medicine</p>
             <h2 className="font-puff text-[28px] py-3 md:text-[3.4rem]
-             " >Health support that fits your life. </h2>
-            <p className="font-winky font-thin pt-2 pb-6 md:text-[1.8rem] ">
+            health-support " >Health support that fits your life. </h2>
+            <p className="font-winky font-thin pt-2 pb-6 md:text-[1.8rem]
+            para ">
               From routine vaccinations to medication reviews, our
               pharmacists are here to make healthcare feel simpler.
             </p>
             <button onClick={ ()=> setAppointment(!appointment)}
             className="bg-yellow-500/70 px-2 py-1 rounded-[.2rem] font-puff
-            tracking-widest font-thin md:text-[24px] cursor-pointer "
+            tracking-widest font-thin md:text-[24px] cursor-pointer book "
             >Book an appointment</button>
           </div>
           {/* vaccinations div */}
           <div className="bg-green-400/10 rounded-[1rem] p-3 grid
           grid-cols-1 items-centr justify-center gap-y-6 md:grid-cols-2
-          md:gap-x-0 md:my-[4rem] ">
+          md:gap-x-0 md:my-[4rem] vaccinations ">
             {/* vaccine */}
-            <div className="border-b border-surface p-2 md:border-none ">
-              <ShieldCheck className="text-yellow-500 py-1 size-10 "/>
+            <div className="border-b border-surface p-2 md:border-none vaccine ">
+              <ShieldCheck className="text-yellow-500 py-1 size-10 icon "/>
               <p className="capitalize font-winky tracking-widest py-2 
-              font-thin text-[18px] ">vaccinations</p>
-              <p className="text-surface font-mono py-2 ">
+              font-thin text-[18px] heading ">vaccinations</p>
+              <p className="text-surface font-mono py-2 description ">
                 Flu, travel, and routine vaccines with
                 a trained pharmacist.
               </p>
