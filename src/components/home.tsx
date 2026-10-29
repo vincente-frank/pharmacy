@@ -1,4 +1,4 @@
-import { Check, Clock, MapPin, Pill, ScanHeart, ShieldCheck, TicketPlus } from "lucide-react"
+import { Check, Clock, MapPin, Pill, ScanHeart, ShieldCheck } from "lucide-react"
 import Navigation from "./Navigation"
 import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
