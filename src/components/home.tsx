@@ -47,14 +47,14 @@ const Home = () => {
   function heroAnimation ():gsap.core.Timeline {
       let hero = document.querySelector(".hero")
       let heroCare = document.querySelector(".hero-care")
-      let heroHead = document.querySelector(".hero-head")
+      // let heroHead = document.querySelector(".hero-head")
       let heroFeel = document.querySelector(".hero-feel")
       let heroLive = document.querySelector(".hero-live")
       let heroDescription = document.querySelector(".hero-description")
       let heroShop = document.querySelector(".hero-shop")
       let heroHealth = document.querySelector(".hero-health")
-      let heroLicensed = document.querySelector(".hero-licensed")
-      let heroSecured = document.querySelector(".hero-secured")
+      // let heroLicensed = document.querySelector(".hero-licensed")
+      // let heroSecured = document.querySelector(".hero-secured")
       let heroImage = document.querySelector(".hero-image")
       let duration = 2
       const heroTimeline = gsap.timeline()
@@ -92,7 +92,7 @@ const Home = () => {
     // health support animation function
     function healthAnimation ():gsap.core.Timeline {
       let medicine = document.querySelector(".container-medicine")
-      let healthDiv = document.querySelector(".health")
+      // let healthDiv = document.querySelector(".health")
       let moreMedicine = document.querySelector(".more-medicine")
       let heading = document.querySelector(".health-support")
       let para = document.querySelector(".para")
