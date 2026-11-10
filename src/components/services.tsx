@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+
 
 const Services = () => {
 
@@ -15,8 +15,8 @@ const Services = () => {
           lowercase text-[2rem] services-title ">huduma zetu</h1>
           <p className="pt-3 font-winky font-thin text-[24px] pb-6
           services-description ">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Deleniti veritatis corrupti inventore?
+            Tunatoa huduma bora za afya zinazokidhi mahitaji yako,
+            kwa uangalifu, uaminifu na utaalamu.
           </p>
           <img src="/welcome.webp" alt=""
           className="rounded-[1rem] cursor-pointer aspect-square
@@ -36,14 +36,15 @@ const Services = () => {
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
             md:text-[2rem] ">virutubisho vya vitamini</h2>
             <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Quaerat quasi ab veniam.
+              Virutubisho bora vya vitamini vinavyosaidia kuimarisha afya yako,
+              kuongeza kinga ya mwili na kukupa nguvu za kila siku.
             </p>
             <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
           </section>
+
           {/* personal care div */}
           <section id="personal"
           className="h-screen p-6 text-center flex flex-col items-center
@@ -55,17 +56,18 @@ const Services = () => {
             />
             {/* title */}
             <h2 className="font-puff text-white py-2 capitalize tracking-wide
-            md:text-[3rem] ">personal care</h2>
+            md:text-[3rem] ">kujijali</h2>
             <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem]
             text-surface ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Quaerat quasi ab veniam.
+              Bidhaa bora za kujitunza na kujijali zinazokusaidia kudumisha usafi,
+              afya ya mwili na kujiamini kila siku.
             </p>
             <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >fika ofisini kwetu</a>
           </section>
+
           {/*medicine prescriptions div */}
           <section id="medicine"
           className="h-screen p-6 text-center flex flex-col items-center
@@ -77,16 +79,17 @@ const Services = () => {
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            md:text-[3rem] ">Medicine & Prescriptions</h2>
+            md:text-[3rem] ">Dawa na Maagizo ya Daktari</h2>
             <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Quaerat quasi ab veniam.
+              Pata dawa zilizoidhinishwa na huduma za maagizo ya daktari kwa
+              ushauri na uangalizi wa wafamasia wenye utaalamu.
             </p>
             <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
           </section>
+
           {/*baby & children care div */}
           <section id="baby"
           className="h-screen p-6 text-center flex flex-col items-center
@@ -98,16 +101,17 @@ const Services = () => {
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            md:text-[3rem] ">child infant care</h2>
+            md:text-[3rem] ">Huduma za Watoto na Watoto Wachanga</h2>
             <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Quaerat quasi ab veniam.
+              Bidhaa salama na bora kwa afya, lishe na utunzaji wa watoto
+              wako katika kila hatua ya ukuaji.
             </p>
             <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan
             rounded-[.2rem] tracking-wide text-[20px] "
             >wasiliana nasi</a>
           </section>
+
           {/* advice & consultation div */}
           <section id="advice"
           className="h-screen p-6 text-center flex flex-col items-center
@@ -119,10 +123,10 @@ const Services = () => {
             />
             {/* title */}
             <h2 className="font-puff text-primary py-2 capitalize tracking-wide
-            md:text-[3rem] ">advice & consultation</h2>
+            md:text-[3rem] ">Ushauri na Mashauriano ya Afya</h2>
             <p className="font-winky font-thin text-[16px] pb-3 md:text-[1.8rem] ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Quaerat quasi ab veniam.
+              Pata ushauri wa kitaalamu kutoka kwa wafamasia wetu ili kukusaidia
+              kufanya maamuzi sahihi kuhusu afya yako.
             </p>
             <a href="#contact"
             className=" bg-surface px-2 py-1 text-primary font-titan

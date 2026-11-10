@@ -45,20 +45,20 @@ const Navigation = () => {
                 <nav className='p-6 flex items-start flex-col gap-y-3'>
                     <a href="#hero" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-winky tracking-[.1rem] w-full '
-                    >home</a>
+                    >nyumbani</a>
                     <a href="#services" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-winky tracking-[.1rem] w-full '
-                    >services</a>
+                    >huduma zetu</a>
                     <a href="#contact" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-winky tracking-[.1rem] w-full '
-                    >send us a message</a>
+                    >tutumie ujumbe</a>
                     <a href="#footer" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-winky tracking-[.1rem] w-full '
-                    >our social media</a>
+                    >mitandao ya kijamii</a>
                     <a href="#health" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-puff tracking-[.1rem] bg-primary
                     text-background px-2 py-1 rounded-[.2rem] '
-                    >book an appointment</a>
+                    >weka miadi</a>
                 </nav>
             </div>
         )}
@@ -82,19 +82,19 @@ const Navigation = () => {
                     <a href="#hero"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
-                    >home</a>
+                    >nyumbani</a>
                     <a href="#services"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
-                    >services</a>
+                    >huduma zetu</a>
                     <a href="#contact"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
-                    >contact us</a>
+                    >wasiliana nasi</a>
                     <a href="#footer"
                     className='capitalize font-winky tracking-[.1rem]
                     text-[20px] '
-                    >our socials</a>
+                    >mitandao ya kijamii</a>
                 </nav>
             </div>
             {/* appointment */}
@@ -102,8 +102,9 @@ const Navigation = () => {
                 <a href="#health"
                 className='capitalize font-puff tracking-[.1rem] bg-primary
                 text-[20px] px-2 py-1 text-background rounded-[.2rem] '
-                >book an appointment</a>
+                >weka miadi</a>
             </div>
+
         </section>
 
     </div>

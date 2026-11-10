@@ -20,18 +20,19 @@ const Contacts = () => {
               />
               <h1 className="font-puff py-3 text-[26px] md:text-[3rem]
               text-primary ">
-                Your neighborhood pharmacy, wherever you are
+                pharmacy yako ya karibu, popote ulipo.
               </h1>
               <p className="font-winky font-thin tracking-wide pt-3 text-[18px]
               pb-6 md:text-[1.8rem] text-black/70 ">
-                Stop by for personal advice, quick prescriptions,
-                and a familiar face. We have 24 locally owned
-                locations ready to help.
+                Tembelea duka letu upate ushauri wa kibinafsi,
+                huduma za haraka za dawa ulizoandikiwa na
+                vipimo vya magonjwa yasiyoambukiza.
+                Tunahudumu kwa saa 12 kila siku.
               </p>
               <a href="#"
               className="bg-primary text-white font-titan tracking-widest px-2
               py-1 rounded-[.2rem] font-thin my-3 inline-block md:text-[1.3rem] "
-              >let's talk</a>
+              >tuzungumze pamoja</a>
             </div>
             {/* pharmacy image */}
             <div className="p-4 bg-surface rounded-[1rem] ">

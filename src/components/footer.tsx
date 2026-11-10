@@ -21,7 +21,8 @@ const Footer = () => {
                 </h1>
                 <p className="py-3 font-winky font-thin text-black/70
                 text-[16px] md:text-[1.3rem] "
-                >Modern pharmacy care, rooted in community since 1987.</p>
+                >Huduma za kisasa za famasia,
+                zenye mizizi imara katika jamii tangu mwaka 2012.</p>
             </div>
             {/* quick links */}
             <div className="md:pt-32">
@@ -29,11 +30,11 @@ const Footer = () => {
               <nav className="flex flex-col items-start justify-start
               gap-y-1">
                 <a href="#hero" className="text-black/70 font-winky tracking-wide
-                ">Home</a>
+                ">nyumbani</a>
                 <a href="#care" className="text-black/70 font-winky tracking-wide
-                ">Services</a>
+                ">huduma zetu</a>
                 <a href="#contact" className="text-black/70 font-winky tracking-wide
-                ">Send us a message</a>
+                ">tutumie ujumbe</a>
               </nav>
             </div>
             {/* contacts */}
@@ -54,7 +55,7 @@ const Footer = () => {
           <div className="pt-10 pb-2 " >
             <p className="font-titan font-thin text-black/50 tracking-widest
             capitalize text-center md:text-[3rem] "
-            >&copy;2026 king james pharmacy. all rights reserved.</p>
+            >&copy;2026 king james pharmacy. Haki zote zimehifadhiwa.</p>
           </div>
         </section>
     </div>
