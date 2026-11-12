@@ -11,7 +11,6 @@ const Navigation = () => {
     function navAnimation ():gsap.core.Timeline {
         let nav = document.querySelectorAll(".nav")
         let duration = 1
-        const matchmedia = gsap.matchMedia()
         const tl = gsap.timeline()
             .from(nav, {y:-80, duration:duration, ease:"back"})
 

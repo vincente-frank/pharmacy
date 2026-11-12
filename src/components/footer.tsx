@@ -1,7 +1,7 @@
-
-
 import { Mail, MessageCircle, PhoneCall } from 'lucide-react'
-import React from 'react'
+
+
+
 
 const Footer = () => {
 

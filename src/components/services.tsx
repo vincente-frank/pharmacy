@@ -33,20 +33,23 @@ const Services = () => {
 
 
     // services heading timeline
-    let headingTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: servicesHeading,
-        start: "top 80%",
-        end: "top 10%",
-        toggleActions: "restart none none reverse"
-      }
-    })
+    let headingTimeline = gsap.timeline()
     .from(split.chars, {opacity:0, y:80, stagger:{
       each:stagger, from:"center"}})
     .from(splitDescription.lines, {opacity: 0, stagger:stagger, duration:duration,
       y:80},"-=0.4")
       .from(servicesImage, {opacity: 0, y:80, duration:duration},"+=0.1")
 
+      // headingTimeline scroll trigger
+      ScrollTrigger.create({
+        animation: headingTimeline,
+        trigger: servicesHeading,
+        start: "top 80%",
+        end: "top 10%",
+        toggleActions: "restart none none reverse"
+      })
+
+      // tl scroll trigger
     ScrollTrigger.create({
       animation: tl,
       trigger: serviceContainer,
