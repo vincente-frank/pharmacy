@@ -1,11 +1,68 @@
 import { useState } from "react"
 import { Clock, Pill, ScanHeart, ShieldCheck } from "lucide-react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
+import { SplitText } from "gsap/SplitText"
 
 
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const Medicine = () => {
 
     const [appointment, setAppointment] = useState<boolean>(false)
+
+    function medicineAnimation (): gsap.core.Timeline {
+      let medicineContainer = document.querySelector(".medicine-container")
+      let medicine = document.querySelector(".dawa")
+      let vaccinations = document.querySelector(".vaccinations")
+      let title = document.querySelector(".medicine-title")
+      let appointment = document.querySelector(".book")
+      let description = document.querySelector(".para")
+      let descriptionSplit = SplitText.create(description, {type:"lines"})
+      let duration = 0.7
+      let stagger = 0.1
+      const matchmedia = gsap.matchMedia()
+      const tl = gsap.timeline()
+
+      // mobile view
+      matchmedia.add("(max-width: 799px)", ()=> {
+        tl.from(medicine, {opacity:0, y:80, duration:duration})
+        tl.from(title, {opacity:0, y:80, duration:duration, ease:"back"})
+        tl.from(descriptionSplit.lines, {opacity:0, y:80,
+          duration:duration, stagger:stagger},"-=0.3")
+        tl.from(appointment, {opacity:0, x:180, duration:duration,
+          ease:"back", scale:0.3})
+        tl.from(vaccinations, {opacity:0, y:80, duration:duration,
+          ease:"back"})
+      });
+
+      // desktop view
+      matchmedia.add("(min-width: 800px)", ()=> {
+        tl.from(medicine, {opacity:0, y:80, duration:duration})
+        tl.from(title, {opacity:0, y:80, duration:duration, ease:"back"})
+        tl.from(vaccinations, {opacity:0, y:80, duration:duration,
+          ease:"back"},"<")
+        tl.from(descriptionSplit.lines, {opacity:0, y:80,
+          duration:duration, stagger:stagger},"-=0.3")
+        tl.from(appointment, {opacity:0, x:180, duration:duration,
+          ease:"back", scale:0.3})
+      });
+
+
+      // scroll trigger animation
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: medicineContainer,
+        start: "top 80%",
+        end: "top 10%",
+        toggleActions: "restart none none reverse",
+      })
+
+      return tl;
+    }
+
+    useGSAP ( ()=> { medicineAnimation() }, [] );
 
   return (
 
@@ -14,23 +71,23 @@ const Medicine = () => {
         <section id="health"
         className="min-h-screen h-auto p-6 bg-primary text-white relative
         grid grid-cols-1 items-center justify-center gap-6 md:grid-cols-2
-        md:items-start container-medicine ">
+        md:items-start medicine-container ">
           {/* health support div */}
           <div className="md:py-[4rem] health ">
             <p className="uppercase font-winky font-thin tracking-widest
-            text-surface text-[14px] more-medicine
-             ">Zaidi ya Dawa</p>
+            text-surface text-[14px] dawa ">Zaidi ya Dawa</p>
             <h2 className="font-puff text-[28px] py-3 md:text-[3.4rem]
-            health-support
+            medicine-title
              ">Msaada wa afya unaoendana na maisha yako. </h2>
-            <p className="font-winky font-thin pt-2 pb-6 md:text-[1.8rem]
-            para ">
+            <p className="font-winky font-thin pt-2 pb-6
+            md:text-[1.8rem] para ">
               Kuanzia chanjo za kawaida hadi mapitio ya dawa, wafamasia wetu
               wako hapa kurahisisha huduma za afya kwako.
             </p>
             <button onClick={ ()=> setAppointment(!appointment)}
-            className="bg-yellow-500/70 px-2 py-1 rounded-[.2rem] font-puff
-            tracking-widest font-thin md:text-[24px] cursor-pointer book "
+            className="bg-yellow-500/70 px-2 py-1 rounded-[.2rem]
+            font-puff tracking-widest font-thin md:text-[24px]
+            cursor-pointer book "
             >Weka miadi</button>
           </div>
 

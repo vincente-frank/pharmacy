@@ -1,9 +1,24 @@
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { MenuIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
+
 
 const Navigation = () => {
 
     const [menu, setMenu]= useState<boolean>(false)
+
+    function navAnimation ():gsap.core.Timeline {
+        let nav = document.querySelectorAll(".nav")
+        let duration = 1
+        const matchmedia = gsap.matchMedia()
+        const tl = gsap.timeline()
+            .from(nav, {y:-80, duration:duration, ease:"back"})
+
+        return tl;
+    }
+
+    useGSAP ( ()=> { navAnimation() }, [] );
 
   return (
 
@@ -12,7 +27,7 @@ const Navigation = () => {
         {/* navigation in smaller screens */}
         <section className='bg-background border-b border-surface px-6
         flex items-center justify-between p-3 fixed top-0 left-0 right-0
-        md:hidden z-10 '>
+        md:hidden z-10 nav '>
             {/* logo */}
             <div>
                 <h1 className='font-puff tracking-wide text-[12px]'>
@@ -51,7 +66,7 @@ const Navigation = () => {
                     >huduma zetu</a>
                     <a href="#contact" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-winky tracking-[.1rem] w-full '
-                    >tutumie ujumbe</a>
+                    >wasiliana nasi</a>
                     <a href="#footer" onClick={ ()=> setMenu(!menu)}
                     className='capitalize font-winky tracking-[.1rem] w-full '
                     >mitandao ya kijamii</a>
@@ -66,7 +81,7 @@ const Navigation = () => {
         {/* navigation in medium to larger screens */}
         <section className='hidden md:flex items-center justify-between
         p-3 bg-background border-b border-surface fixed top-0 left-0
-        right-0 z-10 '>
+        right-0 z-10 nav '>
             {/* logo */}
             <div className='pl-4'>
                 <h1 className='font-puff tracking-wide text-[16px]'>
